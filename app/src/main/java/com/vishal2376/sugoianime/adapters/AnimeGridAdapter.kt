@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
@@ -27,6 +28,11 @@ class AnimeAdapter(private val context: Context, private val animeList: AnimeLis
         Glide.with(context)
             .load(animeList[position].animeImg)
             .into(holder.animeImage)
+
+        //on click
+        holder.itemView.setOnClickListener {
+            it.findNavController().navigate(R.id.animeDetailFragment)
+        }
     }
 
     override fun getItemCount(): Int {

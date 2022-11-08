@@ -12,8 +12,10 @@ class AnimeViewModel(private val repository: AnimeRepository) : ViewModel() {
     init {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getPopularAnime()
+            repository.getMovieAnime()
         }
     }
 
     val popularAnime: LiveData<AnimeList> = repository.popularAnime
+    val movieAnime: LiveData<AnimeList> = repository.movieAnime
 }

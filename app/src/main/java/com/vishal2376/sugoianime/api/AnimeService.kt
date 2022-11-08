@@ -9,4 +9,7 @@ interface AnimeService {
     @GET("/popular")
     suspend fun getPopularAnime() :Response<AnimeList>
 
+    @GET("/anime-movies")
+    suspend fun getMovieAnime() :Response<AnimeList>
+
 }

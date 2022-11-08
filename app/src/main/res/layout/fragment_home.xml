@@ -63,7 +63,8 @@
         android:id="@+id/tvLatest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:drawablePadding="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:fontFamily="@font/montserrat"
         android:textStyle="bold"
@@ -71,7 +72,8 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBar"
+        app:drawableStartCompat="@drawable/bar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRecent"
@@ -91,15 +93,17 @@
         android:id="@+id/tvPopular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:drawablePadding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:fontFamily="@font/montserrat"
         android:textStyle="bold"
         android:text="@string/popular_anime"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvRecent" />
+        app:layout_constraintTop_toBottomOf="@+id/rvRecent"
+        app:drawableStartCompat="@drawable/bar" />
 
 
     <androidx.recyclerview.widget.RecyclerView

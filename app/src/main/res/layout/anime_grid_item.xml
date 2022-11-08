@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/_5sdp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_15sdp">
+
+        <!--        anime image-->
+        <ImageView
+            android:id="@+id/imgAnimeGI"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!--    anime title-->
+    <TextView
+        android:id="@+id/tvAnimeTitleGI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/anime_title"
+        android:fontFamily="@font/montserrat"
+        android:paddingHorizontal="@dimen/_2sdp"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_12ssp"/>
+
+</LinearLayout>

@@ -44,7 +44,7 @@ class MovieFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.movieAnime.observe(requireActivity()) {
+        viewModel.movieAnime.observe(viewLifecycleOwner) {
             Log.e("@@@",it.toString())
             recyclerView.adapter = MovieAdapter(requireContext(), it)
         }

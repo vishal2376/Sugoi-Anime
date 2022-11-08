@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
         recyclerView2.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
 
-        viewModel.popularAnime.observe(requireActivity()) {
+        viewModel.popularAnime.observe(viewLifecycleOwner) {
             recyclerView1.adapter = AnimeAdapter(requireContext(), animeList = it)
             recyclerView2.adapter = AnimeAdapter(requireContext(), animeList = it)
         }

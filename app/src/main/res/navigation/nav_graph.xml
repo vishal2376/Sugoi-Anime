@@ -41,5 +41,10 @@
         android:id="@+id/animeDetailFragment"
         android:name="com.vishal2376.sugoianime.fragments.AnimeDetailFragment"
         android:label="fragment_anime_detail"
-        tools:layout="@layout/fragment_anime_detail" />
+        tools:layout="@layout/fragment_anime_detail" >
+        <argument
+            android:name="animeID"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
 </navigation>

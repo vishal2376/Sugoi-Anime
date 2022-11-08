@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.vishal2376.sugoianime.fragments.nav.MoviesFragment"
+        android:name="com.vishal2376.sugoianime.fragments.nav.MovieFragment"
         android:label="Movies"
         tools:layout="@layout/fragment_movies" >
         <action

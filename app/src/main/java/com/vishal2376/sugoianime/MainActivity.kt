@@ -24,15 +24,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //testing
-//        val repository = (application as AnimeApplication).repository
-//        val viewModel =
-//            ViewModelProvider(this, AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
-//
-//        viewModel.popularAnime.observe(this) {
-//            Log.e("MainActivity", it.toString())
-//        }
-
         //nav controller setup
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment

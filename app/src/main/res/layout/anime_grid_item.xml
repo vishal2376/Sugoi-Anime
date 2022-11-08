@@ -17,8 +17,8 @@
         <!--        anime image-->
         <ImageView
             android:id="@+id/imgAnimeGI"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_130sdp"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_150sdp"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/backgrounds/scenic" />
 

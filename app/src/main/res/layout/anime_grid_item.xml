@@ -33,7 +33,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="@string/anime_title"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/hind_madurai"
         android:paddingHorizontal="@dimen/_2sdp"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"

@@ -8,4 +8,7 @@
     <string name="explore">Explore</string>
     <string name="library">Library</string>
     <string name="anime_title">Anime Title</string>
+    <string name="search_anime">Search Anime</string>
+    <string name="recently_updated">Recently Updated</string>
+    <string name="popular_anime">Popular Anime</string>
 </resources>

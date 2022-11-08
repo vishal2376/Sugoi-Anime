@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="@color/colorWhite">
+    <item
+        android:id="@+id/itemHome"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"
+        app:cnb_iconColor="@color/colorAccent" />
+
+    <item
+        android:id="@+id/itemExplore"
+        android:icon="@drawable/ic_explore"
+        android:title="@string/explore"
+        app:cnb_iconColor="@color/colorAccent" />
+
+    <item
+        android:id="@+id/itemMovies"
+        android:icon="@drawable/ic_movie"
+        android:title="@string/movies"
+        app:cnb_iconColor="@color/colorAccent" />
+
+    <item
+        android:id="@+id/itemLibrary"
+        android:icon="@drawable/ic_library"
+        android:title="@string/library"
+        app:cnb_iconColor="@color/colorAccent" />
+
+</menu>

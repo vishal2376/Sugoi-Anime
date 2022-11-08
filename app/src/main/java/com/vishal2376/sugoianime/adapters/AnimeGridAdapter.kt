@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -33,6 +34,9 @@ class AnimeAdapter(private val context: Context, private val animeList: AnimeLis
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(R.id.animeDetailFragment)
         }
+
+        //animation
+        holder.itemView.animation = AnimationUtils.loadAnimation(context,R.anim.popup_anim)
     }
 
     override fun getItemCount(): Int {

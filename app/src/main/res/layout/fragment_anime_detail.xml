@@ -1,14 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AnimeDetailFragment">
+    android:background="@color/colorPrimaryDark">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--   anime visual info + blur image-->
+    <RelativeLayout
+        android:id="@+id/animeVisualContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/_300sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <!--    blur image background-->
+        <ImageView
+            android:id="@+id/imgAnimeBlurAD"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
+
+        <!--        anime image-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvAnimeAD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_60sdp"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <!--        anime image-->
+            <ImageView
+                android:id="@+id/imgAnimeAD"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_140sdp"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!--        anime info-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cvAnimeAD"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_toEndOf="@+id/cvAnimeAD"
+            android:orientation="vertical">
+
+            <!--    anime title-->
+            <TextView
+                android:id="@+id/tvAnimeTitleAD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:maxLines="2"
+                android:text="@string/anime_title"
+                android:drawablePadding="@dimen/_5sdp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/bar" />
+
+            <!--    anime other name-->
+            <TextView
+                android:id="@+id/tvOtherNameAD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_madurai"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/other_name"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!--        fav and share button-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-28dp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animeVisualContainer">
+
+        <!--        favorite button-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabFavoriteAD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:src="@drawable/ic_favorite"
+            tools:ignore="ContentDescription" />
+
+        <!--        share button-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabShareAD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <!--  more anime detail-->
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_25sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animeVisualContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_10sdp">
+
+            <!--       anime info-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/hind_madurai"
+                android:text="@string/info"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/bar" />
+
+            <!--            status-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/hind_madurai"
+                    android:text="@string/status"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/tvInfoStatusAD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hind_madurai"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:text="Completed" />
+
+            </LinearLayout>
+
+            <!--            episode-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/hind_madurai"
+                    android:text="@string/total_episodes"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/tvInfoEpisodeAD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hind_madurai"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:text="220" />
+
+            </LinearLayout>
+
+            <!--            released date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/hind_madurai"
+                    android:text="@string/released_date"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/tvInfoDateAD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hind_madurai"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:text="2002" />
+
+            </LinearLayout>
+
+
+            <!--        synopsis-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/hind_madurai"
+                android:text="@string/synopsis"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/bar" />
+
+            <TextView
+                android:id="@+id/tvAnimeSynopsisAD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/hind_madurai"
+                android:text="@string/dummy_text"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,17 +32,26 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //testing
+        //--------------------------testing-------------------------------------
+        // TODO : remove this after data binding
+
         repository = (requireActivity().application as AnimeApplication).repository
         viewModel =
             ViewModelProvider(this, AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
 
-        val recyclerView = requireActivity().findViewById<RecyclerView>(R.id.rvPopular)
-        recyclerView.layoutManager =
+        val recyclerView1 = requireActivity().findViewById<RecyclerView>(R.id.rvRecent)
+        val recyclerView2 = requireActivity().findViewById<RecyclerView>(R.id.rvPopular)
+
+        recyclerView1.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView2.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
 
         viewModel.popularAnime.observe(requireActivity()) {
-            recyclerView.adapter = AnimeAdapter(requireContext(), animeList = it)
+            recyclerView1.adapter = AnimeAdapter(requireContext(), animeList = it)
+            recyclerView2.adapter = AnimeAdapter(requireContext(), animeList = it)
         }
+
+        //------------------------------------------------------------------------------
     }
 }

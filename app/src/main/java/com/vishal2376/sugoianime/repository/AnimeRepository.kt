@@ -20,8 +20,8 @@ class AnimeRepository(private val animeService: AnimeService) {
         }
     }
 
-    suspend fun getMovieAnime(){
-        val result = animeService.getMovieAnime()
+    suspend fun getMovieAnime(pageNumber:Int){
+        val result = animeService.getMovieAnime(pageNumber)
         if(result.body() != null){
             _movieAnime.postValue(result.body())
         }

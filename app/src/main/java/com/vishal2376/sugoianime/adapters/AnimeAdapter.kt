@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
+import com.vishal2376.sugoianime.fragments.nav.HomeFragmentDirections
 import com.vishal2376.sugoianime.models.AnimeList
 
 class AnimeAdapter(private val context: Context, private val animeList: AnimeList) :
@@ -23,16 +24,20 @@ class AnimeAdapter(private val context: Context, private val animeList: AnimeLis
     }
 
     override fun onBindViewHolder(holder: AnimeViewHolder, position: Int) {
-        holder.animeTitle.text = animeList[position].animeTitle
 
+        val currentAnime = animeList[position]
+
+        holder.animeTitle.text = currentAnime.animeTitle
         //image setup
         Glide.with(context)
-            .load(animeList[position].animeImg)
+            .load(currentAnime.animeImg)
             .into(holder.animeImage)
 
         //on click
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(R.id.animeDetailFragment)
+            //pass current animeID to AnimeDetail Fragment
+            val action = HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
+            it.findNavController().navigate(action)
         }
 
         //animation

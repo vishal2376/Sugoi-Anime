@@ -6,14 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.vishal2376.sugoianime.AnimeApplication
 import com.vishal2376.sugoianime.R
+import com.vishal2376.sugoianime.repository.AnimeRepository
+import com.vishal2376.sugoianime.viewmodels.AnimeViewModalFactory
+import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
+import kotlinx.coroutines.launch
 
 class AnimeDetailFragment : Fragment() {
 
     //get arguments from HomeFragment through AnimeAdapter
     private val args: AnimeDetailFragmentArgs by navArgs()
+
+    private lateinit var repository: AnimeRepository
+    private lateinit var viewModel: AnimeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +43,19 @@ class AnimeDetailFragment : Fragment() {
         val animeSynopsis = requireActivity().findViewById<TextView>(R.id.tvAnimeSynopsisAD)
         val animeShare = requireActivity().findViewById<FloatingActionButton>(R.id.fabShareAD)
 
+        repository = (requireActivity().application as AnimeApplication).repository
+        viewModel =
+            ViewModelProvider(this, AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
+
+        //fetching the data
+        lifecycleScope.launch {
+            viewModel.getAnimeDetail(args.animeID)
+        }
+
+        viewModel.animeDetail.observe(viewLifecycleOwner) {
+            animeTitle.text = it.animeTitle
+            animeSynopsis.text = it.synopsis
+        }
         //----------------------------------------------------------------------
     }
 }

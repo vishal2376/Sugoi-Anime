@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
 
         repository = (requireActivity().application as AnimeApplication).repository
         viewModel =
-            ViewModelProvider(this, AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
+            ViewModelProvider(requireActivity(), AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
 
         val recyclerView1 = requireActivity().findViewById<RecyclerView>(R.id.rvRecent)
         val recyclerView2 = requireActivity().findViewById<RecyclerView>(R.id.rvPopular)

@@ -38,7 +38,7 @@ class MovieFragment : Fragment() {
 
         repository = (requireActivity().application as AnimeApplication).repository
         viewModel =
-            ViewModelProvider(this, AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
+            ViewModelProvider(requireActivity(), AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
 
         val recyclerView = requireActivity().findViewById<RecyclerView>(R.id.rvMovies)
 

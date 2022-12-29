@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vishal2376.sugoianime.AnimeApplication
 import com.vishal2376.sugoianime.R
@@ -40,7 +42,12 @@ class AnimeDetailFragment : Fragment() {
         //--------------------------testing-------------------------------------
         // TODO : remove this after data binding
         val animeTitle = requireActivity().findViewById<TextView>(R.id.tvAnimeTitleAD)
+        val animeOtherName = requireActivity().findViewById<TextView>(R.id.tvOtherNameAD)
+        val animeStatus = requireActivity().findViewById<TextView>(R.id.tvInfoStatusAD)
+        val animeDate = requireActivity().findViewById<TextView>(R.id.tvInfoDateAD)
+        val animeEpisodes = requireActivity().findViewById<TextView>(R.id.tvInfoEpisodeAD)
         val animeSynopsis = requireActivity().findViewById<TextView>(R.id.tvAnimeSynopsisAD)
+        val animeImg = requireActivity().findViewById<ImageView>(R.id.imgAnimeAD)
         val animeShare = requireActivity().findViewById<FloatingActionButton>(R.id.fabShareAD)
 
         repository = (requireActivity().application as AnimeApplication).repository
@@ -55,6 +62,14 @@ class AnimeDetailFragment : Fragment() {
         viewModel.animeDetail.observe(viewLifecycleOwner) {
             animeTitle.text = it.animeTitle
             animeSynopsis.text = it.synopsis
+            animeDate.text = it.releasedDate
+            animeEpisodes.text = it.totalEpisodes
+            animeStatus.text = it.status
+//            animeOtherName.text = it.otherNames
+
+            Glide.with(requireContext())
+                .load(it.animeImg)
+                .into(animeImg)
         }
         //----------------------------------------------------------------------
     }

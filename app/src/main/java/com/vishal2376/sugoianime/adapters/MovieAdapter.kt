@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.findNavController
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
@@ -33,7 +33,8 @@ class MovieAdapter(private val context: Context, private val movieList: AnimeLis
 
         //on click
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(R.id.animeDetailFragment)
+            Toast.makeText(context, "Implementing soon", Toast.LENGTH_SHORT).show()
+//            it.findNavController().navigate(R.id.animeDetailFragment)
         }
 
         //animation

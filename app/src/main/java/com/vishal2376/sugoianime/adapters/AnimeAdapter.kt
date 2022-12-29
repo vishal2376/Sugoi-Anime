@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -38,6 +39,8 @@ class AnimeAdapter(private val context: Context, private val animeList: AnimeLis
             //pass current animeID to AnimeDetail Fragment
             val action = HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
             it.findNavController().navigate(action)
+
+            Toast.makeText(context,"Loading Data...",Toast.LENGTH_LONG).show()
         }
 
         //animation

@@ -40,6 +40,7 @@ class AnimeAdapter(private val context: Context, private val animeList: AnimeLis
             val action = HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
             it.findNavController().navigate(action)
 
+            // TODO make a progress bar
             Toast.makeText(context,"Loading Data...",Toast.LENGTH_LONG).show()
         }
 

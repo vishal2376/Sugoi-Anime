@@ -8,10 +8,12 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
+import com.vishal2376.sugoianime.fragments.nav.MovieFragmentDirections
 import com.vishal2376.sugoianime.models.AnimeList
 
 class MovieAdapter(private val context: Context, private val movieList: AnimeList) :
@@ -23,18 +25,26 @@ class MovieAdapter(private val context: Context, private val movieList: AnimeLis
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.animeTitle.text = movieList[position].animeTitle
-        holder.animeYear.text = movieList[position].releasedDate
+
+        val currentAnime = movieList[position]
+
+        //anime info setup
+        holder.animeTitle.text = currentAnime.animeTitle
+        holder.animeYear.text = currentAnime.releasedDate
 
         //image setup
         Glide.with(context)
-            .load(movieList[position].animeImg)
+            .load(currentAnime.animeImg)
             .into(holder.movieImage)
 
         //on click
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, "Implementing soon", Toast.LENGTH_SHORT).show()
-//            it.findNavController().navigate(R.id.animeDetailFragment)
+            //pass animeId to anime Detail fragment
+            val action = MovieFragmentDirections.actionMoviesFragmentToAnimeDetailFragment(currentAnime.animeId)
+            it.findNavController().navigate(action)
+
+            // TODO make a progress bar
+            Toast.makeText(context,"Loading Data...",Toast.LENGTH_LONG).show()
         }
 
         //animation

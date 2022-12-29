@@ -2,19 +2,14 @@ package com.vishal2376.sugoianime
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
-import com.vishal2376.sugoianime.fragments.AnimeDetailFragment
-import com.vishal2376.sugoianime.fragments.nav.ExploreFragment
-import com.vishal2376.sugoianime.fragments.nav.HomeFragment
-import com.vishal2376.sugoianime.fragments.nav.LibraryFragment
-import com.vishal2376.sugoianime.fragments.nav.MovieFragment
-import com.vishal2376.sugoianime.viewmodels.AnimeViewModalFactory
-import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,21 +25,30 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         //bottom navigation setup
-        val bottomNavView = findViewById<ChipNavigationBar>(R.id.bottomNavBar)
-        bottomNavView.setItemSelected(R.id.itemHome)
-        bottomNavView.setOnItemSelectedListener {
-            when (it) {
-                R.id.itemHome -> loadFragment(HomeFragment())
-                R.id.itemExplore -> loadFragment(ExploreFragment())
-                R.id.itemMovies -> loadFragment(MovieFragment())
-                R.id.itemLibrary -> loadFragment(LibraryFragment())
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottomNavBar)
+        bottomNavView.setupWithNavController(navController)
+        bottomNavView.setOnNavigationItemSelectedListener { menuItem: MenuItem ->
+             when (menuItem.itemId) {
+                R.id.itemHome -> {
+                    navController.navigate(R.id.homeFragment)
+                    true
+                }
+                R.id.itemExplore -> {
+                    navController.navigate(R.id.exploreFragment)
+                    true
+                }
+                R.id.itemMovies -> {
+                    navController.navigate(R.id.moviesFragment)
+                    true
+                }
+                R.id.itemLibrary -> {
+                    navController.navigate(R.id.libraryFragment)
+                    true
+                }
+                else -> false
             }
         }
+
     }
 
-    private fun loadFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.nav_host_fragment, fragment)
-        transaction.commit()
-    }
 }

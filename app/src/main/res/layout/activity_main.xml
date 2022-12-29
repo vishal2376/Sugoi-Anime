@@ -18,19 +18,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavBar" />
 
-    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+<!--    TODO Improve UI-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:elevation="16dp"
-        android:paddingVertical="@dimen/_8sdp"
-        app:cnb_animationDuration="150"
-        app:cnb_menuResource="@menu/bottom_menu"
-        app:cnb_radius="@dimen/_40sdp"
-        app:cnb_unselectedColor="@color/colorWhite"
+        app:menu="@menu/bottom_menu"
+        app:itemTextColor="@color/colorWhite"
+        app:itemIconTint="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

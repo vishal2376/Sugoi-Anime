@@ -1,8 +1,5 @@
 package com.vishal2376.sugoianime.repository
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vishal2376.sugoianime.api.AnimeAPI

@@ -1,21 +1,16 @@
 package com.vishal2376.sugoianime.fragments.nav
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vishal2376.sugoianime.AnimeApplication
 import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.adapters.MovieAdapter
-import com.vishal2376.sugoianime.repository.AnimeRepository
-import com.vishal2376.sugoianime.viewmodels.AnimeViewModalFactory
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

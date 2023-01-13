@@ -8,18 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.vishal2376.sugoianime.AnimeApplication
 import com.vishal2376.sugoianime.R
-import com.vishal2376.sugoianime.repository.AnimeRepository
-import com.vishal2376.sugoianime.viewmodels.AnimeViewModalFactory
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AnimeDetailFragment : Fragment() {

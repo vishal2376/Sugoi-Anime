@@ -11,11 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.adapters.AnimeAdapter
+import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     private val animeViewModel by viewModels<AnimeViewModel>()
 
@@ -24,30 +28,41 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        //get data
+        animeViewModel.getPopularAnime()
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //--------------------------testing-------------------------------------
-        // TODO : remove this after data binding
+        setLayout()
 
-        animeViewModel.getPopularAnime()
-
-        val recyclerView1 = requireActivity().findViewById<RecyclerView>(R.id.rvRecent)
-        val recyclerView2 = requireActivity().findViewById<RecyclerView>(R.id.rvPopular)
-
-        recyclerView1.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView2.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
-
-        animeViewModel.popularAnime.observe(viewLifecycleOwner, Observer {
-            recyclerView1.adapter = AnimeAdapter(requireContext(), animeList = it)
-            recyclerView2.adapter = AnimeAdapter(requireContext(), animeList = it)
-        })
+        bindObservers()
 
         //------------------------------------------------------------------------------
     }
+
+    private fun bindObservers() {
+        animeViewModel.popularAnime.observe(viewLifecycleOwner, Observer {
+            binding.rvPopular.adapter = AnimeAdapter(requireContext(), animeList = it)
+            binding.rvRecent.adapter = AnimeAdapter(requireContext(), animeList = it)
+        })
+    }
+
+    private fun setLayout() {
+        binding.rvPopular.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRecent.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

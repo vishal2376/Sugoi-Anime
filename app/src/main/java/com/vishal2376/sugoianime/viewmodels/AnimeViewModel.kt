@@ -6,22 +6,33 @@ import androidx.lifecycle.viewModelScope
 import com.vishal2376.sugoianime.models.AnimeList
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
 import com.vishal2376.sugoianime.repository.AnimeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AnimeViewModel(private val repository: AnimeRepository) : ViewModel() {
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
+@HiltViewModel
+class AnimeViewModel @Inject constructor(private val repository: AnimeRepository) : ViewModel() {
+
+    val popularAnime: LiveData<AnimeList> get() = repository.popularAnime
+    val movieAnime: LiveData<AnimeList> get() = repository.movieAnime
+    val animeDetail: LiveData<AnimeDetail> get() = repository.animeDetail
+
+    fun getPopularAnime() {
+        viewModelScope.launch {
             repository.getPopularAnime()
-            repository.getMovieAnime(1)
         }
     }
 
-    val popularAnime: LiveData<AnimeList> = repository.popularAnime
-    val movieAnime: LiveData<AnimeList> = repository.movieAnime
-    val animeDetail: LiveData<AnimeDetail> = repository.animeDetail
+    fun getMovieAnime(pageNumber: Int) {
+        viewModelScope.launch {
+            repository.getMovieAnime(pageNumber)
+        }
+    }
 
-    suspend fun getAnimeDetail(animeID: String) {
-        repository.getAnimeDetail(animeID)
+    fun getAnimeDetail(animeID: String) {
+        viewModelScope.launch {
+            repository.getAnimeDetail(animeID)
+        }
     }
 }

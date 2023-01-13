@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,12 +17,12 @@ import com.vishal2376.sugoianime.adapters.MovieAdapter
 import com.vishal2376.sugoianime.repository.AnimeRepository
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModalFactory
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieFragment : Fragment() {
 
-    private lateinit var repository: AnimeRepository
-    private lateinit var viewModel: AnimeViewModel
-
+    private val viewModel by viewModels<AnimeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,21 +35,13 @@ class MovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //--------------------------testing-------------------------------------
-        // TODO : remove this after data binding
-
-        repository = (requireActivity().application as AnimeApplication).repository
-        viewModel =
-            ViewModelProvider(requireActivity(), AnimeViewModalFactory(repository))[AnimeViewModel::class.java]
-
         val recyclerView = requireActivity().findViewById<RecyclerView>(R.id.rvMovies)
-
+        viewModel.getMovieAnime(1)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.movieAnime.observe(viewLifecycleOwner) {
+        viewModel.movieAnime.observe(viewLifecycleOwner, Observer {
             recyclerView.adapter = MovieAdapter(requireContext(), it)
-        }
-
+        })
         //------------------------------------------------------------------------------
 
     }

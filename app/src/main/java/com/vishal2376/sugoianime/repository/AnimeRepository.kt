@@ -2,11 +2,12 @@ package com.vishal2376.sugoianime.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.vishal2376.sugoianime.api.AnimeService
+import com.vishal2376.sugoianime.api.AnimeAPI
 import com.vishal2376.sugoianime.models.AnimeList
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
+import javax.inject.Inject
 
-class AnimeRepository(private val animeService: AnimeService) {
+class AnimeRepository @Inject constructor(private val animeAPI: AnimeAPI) {
 
     private val _popularAnime = MutableLiveData<AnimeList>()
     private val _movieAnime = MutableLiveData<AnimeList>()
@@ -17,21 +18,21 @@ class AnimeRepository(private val animeService: AnimeService) {
     val animeDetail: LiveData<AnimeDetail> get() = _animeDetail
 
     suspend fun getPopularAnime(){
-        val result = animeService.getPopularAnime()
+        val result = animeAPI.getPopularAnime()
         if(result.body() != null){
             _popularAnime.postValue(result.body())
         }
     }
 
     suspend fun getMovieAnime(pageNumber: Int) {
-        val result = animeService.getMovieAnime(pageNumber)
+        val result = animeAPI.getMovieAnime(pageNumber)
         if (result.body() != null) {
             _movieAnime.postValue(result.body())
         }
     }
 
     suspend fun getAnimeDetail(animeID: String) {
-        val result = animeService.getAnimeDetail(animeID)
+        val result = animeAPI.getAnimeDetail(animeID)
         if (result.body() != null) {
             _animeDetail.postValue((result.body()))
         }

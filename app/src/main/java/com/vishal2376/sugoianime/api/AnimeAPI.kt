@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface AnimeService {
+interface AnimeAPI {
 
     @GET("/popular")
     suspend fun getPopularAnime(): Response<AnimeList>

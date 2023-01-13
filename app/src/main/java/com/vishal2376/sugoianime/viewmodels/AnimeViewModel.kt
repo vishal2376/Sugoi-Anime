@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vishal2376.sugoianime.models.AnimeList
+import com.vishal2376.sugoianime.models.AnimeRecentResponse
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
 import com.vishal2376.sugoianime.repository.AnimeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,10 +17,17 @@ class AnimeViewModel @Inject constructor(private val repository: AnimeRepository
     val popularAnimeLiveData: LiveData<AnimeList> get() = repository.popularAnimeLiveData
     val movieAnimeLiveData: LiveData<AnimeList> get() = repository.movieAnimeLiveData
     val animeDetailLiveData: LiveData<AnimeDetail> get() = repository.animeDetailLiveData
+    val recentAnimeLiveData:LiveData<AnimeRecentResponse> get() = repository.recentAnimeRecentResponse
 
     fun getPopularAnime() {
         viewModelScope.launch {
             repository.getPopularAnime()
+        }
+    }
+
+    fun getRecentAnime(){
+        viewModelScope.launch {
+            repository.getRecentAnime()
         }
     }
 

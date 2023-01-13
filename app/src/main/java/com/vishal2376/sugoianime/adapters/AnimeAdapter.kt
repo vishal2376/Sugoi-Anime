@@ -15,8 +15,13 @@ import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.fragments.nav.HomeFragmentDirections
 import com.vishal2376.sugoianime.models.AnimeList
+import com.vishal2376.sugoianime.models.AnimeRecentResponse
 
-class AnimeAdapter(private val context: Context, private val animeList: AnimeList) :
+class AnimeAdapter(
+    private val context: Context,
+    private val animeList: AnimeList? = null,
+    private val recentResponse: AnimeRecentResponse? = null
+) :
     Adapter<AnimeAdapter.AnimeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimeViewHolder {
@@ -26,30 +31,52 @@ class AnimeAdapter(private val context: Context, private val animeList: AnimeLis
 
     override fun onBindViewHolder(holder: AnimeViewHolder, position: Int) {
 
-        val currentAnime = animeList[position]
+        if (animeList != null) {
+            val currentAnime = animeList[position]
 
-        holder.animeTitle.text = currentAnime.animeTitle
-        //image setup
-        Glide.with(context)
-            .load(currentAnime.animeImg)
-            .into(holder.animeImage)
+            holder.animeTitle.text = currentAnime.animeTitle
+            //image setup
+            Glide.with(context)
+                .load(currentAnime.animeImg)
+                .into(holder.animeImage)
 
-        //on click
-        holder.itemView.setOnClickListener {
-            //pass current animeID to AnimeDetail Fragment
-            val action = HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
-            it.findNavController().navigate(action)
+            //on click
+            holder.itemView.setOnClickListener {
+                //pass current animeID to AnimeDetail Fragment
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
+                it.findNavController().navigate(action)
 
-            // TODO make a progress bar
-            Toast.makeText(context,"Loading Data...",Toast.LENGTH_LONG).show()
+                // TODO make a progress bar
+                Toast.makeText(context, "Loading Data...", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            val currentAnime = recentResponse!![position]
+
+            holder.animeTitle.text = currentAnime.animeTitle
+            //image setup
+            Glide.with(context)
+                .load(currentAnime.animeImg)
+                .into(holder.animeImage)
+
+            //on click
+            holder.itemView.setOnClickListener {
+                //pass current animeID to AnimeDetail Fragment
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
+                it.findNavController().navigate(action)
+
+                // TODO make a progress bar
+                Toast.makeText(context, "Loading Data...", Toast.LENGTH_LONG).show()
+            }
         }
 
         //animation
-        holder.itemView.animation = AnimationUtils.loadAnimation(context,R.anim.popup_anim)
+        holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.popup_anim)
     }
 
     override fun getItemCount(): Int {
-        return animeList.size
+        return animeList?.size ?: recentResponse!!.size
     }
 
     class AnimeViewHolder(itemView: View) : ViewHolder(itemView) {

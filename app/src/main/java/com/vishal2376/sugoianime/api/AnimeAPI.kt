@@ -1,6 +1,7 @@
 package com.vishal2376.sugoianime.api
 
 import com.vishal2376.sugoianime.models.AnimeList
+import com.vishal2376.sugoianime.models.AnimeRecentResponse
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,6 +13,10 @@ interface AnimeAPI {
     @GET("/popular")
     suspend fun getPopularAnime(): Response<AnimeList>
 
+    @GET("/recent-release")
+    suspend fun getRecentAnime(
+    ): Response<AnimeRecentResponse>
+
     @GET("/anime-movies")
     suspend fun getMovieAnime(
         @Query("page") page: Int
@@ -21,4 +26,5 @@ interface AnimeAPI {
     suspend fun getAnimeDetail(
         @Path("animeID") animeID: String
     ): Response<AnimeDetail>
+
 }

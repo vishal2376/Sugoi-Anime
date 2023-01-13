@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
 
         //get data
         animeViewModel.getPopularAnime()
+        animeViewModel.getRecentAnime()
 
         return binding.root
     }
@@ -46,7 +47,10 @@ class HomeFragment : Fragment() {
     private fun bindObservers() {
         animeViewModel.popularAnimeLiveData.observe(viewLifecycleOwner, Observer {
             binding.rvPopular.adapter = AnimeAdapter(requireContext(), animeList = it)
-            binding.rvRecent.adapter = AnimeAdapter(requireContext(), animeList = it)
+        })
+
+        animeViewModel.recentAnimeLiveData.observe(viewLifecycleOwner, Observer {
+            binding.rvRecent.adapter = AnimeAdapter(requireContext(), recentResponse = it)
         })
     }
 
@@ -54,7 +58,7 @@ class HomeFragment : Fragment() {
         binding.rvPopular.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvRecent.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 
     override fun onDestroyView() {

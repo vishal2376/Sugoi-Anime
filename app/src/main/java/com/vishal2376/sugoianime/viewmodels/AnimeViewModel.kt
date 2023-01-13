@@ -7,6 +7,7 @@ import com.vishal2376.sugoianime.models.AnimeList
 import com.vishal2376.sugoianime.models.AnimeRecentResponse
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
 import com.vishal2376.sugoianime.repository.AnimeRepository
+import com.vishal2376.sugoianime.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,10 +15,10 @@ import javax.inject.Inject
 @HiltViewModel
 class AnimeViewModel @Inject constructor(private val repository: AnimeRepository) : ViewModel() {
 
-    val popularAnimeLiveData: LiveData<AnimeList> get() = repository.popularAnimeLiveData
-    val movieAnimeLiveData: LiveData<AnimeList> get() = repository.movieAnimeLiveData
-    val animeDetailLiveData: LiveData<AnimeDetail> get() = repository.animeDetailLiveData
-    val recentAnimeLiveData:LiveData<AnimeRecentResponse> get() = repository.recentAnimeRecentResponse
+    val popularAnimeLiveData: LiveData<NetworkResult<AnimeList>> get() = repository.popularAnimeLiveData
+    val movieAnimeLiveData: LiveData<NetworkResult<AnimeList>> get() = repository.movieAnimeLiveData
+    val animeDetailLiveData: LiveData<NetworkResult<AnimeDetail>> get() = repository.animeDetailLiveData
+    val recentAnimeLiveData: LiveData<NetworkResult<AnimeRecentResponse>> get() = repository.recentAnimeLiveData
 
     fun getPopularAnime() {
         viewModelScope.launch {

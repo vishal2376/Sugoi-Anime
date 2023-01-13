@@ -48,7 +48,7 @@ class AnimeDetailFragment : Fragment() {
 
     private fun bindObservers() {
         animeViewModel.animeDetailLiveData.observe(viewLifecycleOwner) {
-            setLayout(it)
+            setLayout(it.data!!)
         }
     }
 

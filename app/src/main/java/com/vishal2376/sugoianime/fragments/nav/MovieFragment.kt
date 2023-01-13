@@ -45,7 +45,7 @@ class MovieFragment : Fragment() {
 
     private fun bindObservers() {
         animeViewModel.movieAnimeLiveData.observe(viewLifecycleOwner, Observer {
-            binding.rvMovies.adapter = MovieAdapter(requireContext(), it)
+            binding.rvMovies.adapter = MovieAdapter(requireContext(), it.data!!)
         })
     }
 

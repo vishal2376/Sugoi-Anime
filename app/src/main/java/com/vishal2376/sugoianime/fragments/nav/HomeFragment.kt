@@ -46,11 +46,11 @@ class HomeFragment : Fragment() {
 
     private fun bindObservers() {
         animeViewModel.popularAnimeLiveData.observe(viewLifecycleOwner, Observer {
-            binding.rvPopular.adapter = AnimeAdapter(requireContext(), animeList = it)
+            binding.rvPopular.adapter = AnimeAdapter(requireContext(), animeList = it.data)
         })
 
         animeViewModel.recentAnimeLiveData.observe(viewLifecycleOwner, Observer {
-            binding.rvRecent.adapter = AnimeAdapter(requireContext(), recentResponse = it)
+            binding.rvRecent.adapter = AnimeAdapter(requireContext(), recentResponse = it.data)
         })
     }
 

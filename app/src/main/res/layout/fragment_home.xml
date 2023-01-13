@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
+  <!--    progress bar-->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+
     <!--    action bar-->
     <LinearLayout
         android:id="@+id/actionBar"
@@ -13,8 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,16 +56,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
         android:background="@drawable/round_card"
+        android:drawablePadding="@dimen/_5sdp"
         android:gravity="center_vertical"
         android:hint="@string/search_anime"
-        android:drawablePadding="@dimen/_5sdp"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_10sdp"
         android:textColorHint="@color/colorGrey"
         android:textSize="@dimen/_12sdp"
+        app:drawableStartCompat="@drawable/ic_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:drawableStartCompat="@drawable/ic_search"
         app:layout_constraintTop_toBottomOf="@+id/actionBar" />
 
     <!--      Latest Recycler view -->
@@ -64,28 +74,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
-        android:drawablePadding="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_20sdp"
+        android:drawablePadding="@dimen/_5sdp"
         android:fontFamily="@font/montserrat"
-        android:textStyle="bold"
         android:text="@string/recently_updated"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar"
-        app:drawableStartCompat="@drawable/bar" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRecent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
-        tools:listitem="@layout/anime_grid_item"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLatest" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLatest"
+        tools:listitem="@layout/anime_grid_item" />
 
 
     <!--      Latest Recycler view -->
@@ -94,28 +104,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
-        android:drawablePadding="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_20sdp"
+        android:drawablePadding="@dimen/_5sdp"
         android:fontFamily="@font/montserrat"
-        android:textStyle="bold"
         android:text="@string/popular_anime"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvRecent"
-        app:drawableStartCompat="@drawable/bar" />
-
+        app:layout_constraintTop_toBottomOf="@+id/rvRecent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPopular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
-        tools:listitem="@layout/anime_grid_item"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPopular" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPopular"
+        tools:listitem="@layout/anime_grid_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

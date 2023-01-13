@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.adapters.MovieAdapter
-import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
 import com.vishal2376.sugoianime.databinding.FragmentMoviesBinding
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +19,7 @@ class MovieFragment : Fragment() {
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<AnimeViewModel>()
+    private val animeViewModel by viewModels<AnimeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +29,7 @@ class MovieFragment : Fragment() {
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
 
         //get data
-        viewModel.getMovieAnime(1)
+        animeViewModel.getMovieAnime(1)
 
         return binding.root
     }
@@ -47,7 +44,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun bindObservers() {
-        viewModel.movieAnime.observe(viewLifecycleOwner, Observer {
+        animeViewModel.movieAnimeLiveData.observe(viewLifecycleOwner, Observer {
             binding.rvMovies.adapter = MovieAdapter(requireContext(), it)
         })
     }

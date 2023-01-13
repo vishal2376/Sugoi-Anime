@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.adapters.AnimeAdapter
 import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
@@ -43,11 +41,10 @@ class HomeFragment : Fragment() {
 
         bindObservers()
 
-        //------------------------------------------------------------------------------
     }
 
     private fun bindObservers() {
-        animeViewModel.popularAnime.observe(viewLifecycleOwner, Observer {
+        animeViewModel.popularAnimeLiveData.observe(viewLifecycleOwner, Observer {
             binding.rvPopular.adapter = AnimeAdapter(requireContext(), animeList = it)
             binding.rvRecent.adapter = AnimeAdapter(requireContext(), animeList = it)
         })

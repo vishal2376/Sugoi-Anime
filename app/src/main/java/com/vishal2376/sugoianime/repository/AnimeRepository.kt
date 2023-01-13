@@ -9,32 +9,32 @@ import javax.inject.Inject
 
 class AnimeRepository @Inject constructor(private val animeAPI: AnimeAPI) {
 
-    private val _popularAnime = MutableLiveData<AnimeList>()
-    private val _movieAnime = MutableLiveData<AnimeList>()
-    private val _animeDetail = MutableLiveData<AnimeDetail>()
+    private val _popularAnimeLiveData = MutableLiveData<AnimeList>()
+    private val _movieAnimeLiveData = MutableLiveData<AnimeList>()
+    private val _animeDetailLiveData = MutableLiveData<AnimeDetail>()
 
-    val popularAnime: LiveData<AnimeList> get() = _popularAnime
-    val movieAnime: LiveData<AnimeList> get() = _movieAnime
-    val animeDetail: LiveData<AnimeDetail> get() = _animeDetail
+    val popularAnimeLiveData: LiveData<AnimeList> get() = _popularAnimeLiveData
+    val movieAnimeLiveData: LiveData<AnimeList> get() = _movieAnimeLiveData
+    val animeDetailLiveData: LiveData<AnimeDetail> get() = _animeDetailLiveData
 
     suspend fun getPopularAnime(){
         val result = animeAPI.getPopularAnime()
         if(result.body() != null){
-            _popularAnime.postValue(result.body())
+            _popularAnimeLiveData.postValue(result.body())
         }
     }
 
     suspend fun getMovieAnime(pageNumber: Int) {
         val result = animeAPI.getMovieAnime(pageNumber)
         if (result.body() != null) {
-            _movieAnime.postValue(result.body())
+            _movieAnimeLiveData.postValue(result.body())
         }
     }
 
     suspend fun getAnimeDetail(animeID: String) {
         val result = animeAPI.getAnimeDetail(animeID)
         if (result.body() != null) {
-            _animeDetail.postValue((result.body()))
+            _animeDetailLiveData.postValue((result.body()))
         }
     }
 }

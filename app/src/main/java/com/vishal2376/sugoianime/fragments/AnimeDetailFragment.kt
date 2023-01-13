@@ -19,7 +19,7 @@ class AnimeDetailFragment : Fragment() {
     private var _binding: FragmentAnimeDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<AnimeViewModel>()
+    private val animeViewModel by viewModels<AnimeViewModel>()
 
     //get arguments from HomeFragment through AnimeAdapter
     private val args: AnimeDetailFragmentArgs by navArgs()
@@ -33,7 +33,7 @@ class AnimeDetailFragment : Fragment() {
         _binding = FragmentAnimeDetailBinding.inflate(inflater, container, false)
 
         //fetching the data
-        viewModel.getAnimeDetail(args.animeID)
+        animeViewModel.getAnimeDetail(args.animeID)
 
         return binding.root
     }
@@ -47,7 +47,7 @@ class AnimeDetailFragment : Fragment() {
     }
 
     private fun bindObservers() {
-        viewModel.animeDetail.observe(viewLifecycleOwner) {
+        animeViewModel.animeDetailLiveData.observe(viewLifecycleOwner) {
             setLayout(it)
         }
     }

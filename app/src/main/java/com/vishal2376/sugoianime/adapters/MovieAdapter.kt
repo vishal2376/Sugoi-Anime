@@ -42,9 +42,6 @@ class MovieAdapter(private val context: Context, private val movieList: AnimeLis
             //pass animeId to anime Detail fragment
             val action = MovieFragmentDirections.actionMoviesFragmentToAnimeDetailFragment(currentAnime.animeId)
             it.findNavController().navigate(action)
-
-            // TODO make a progress bar
-            Toast.makeText(context,"Loading Data...",Toast.LENGTH_LONG).show()
         }
 
         //animation

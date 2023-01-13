@@ -46,9 +46,6 @@ class AnimeAdapter(
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
                 it.findNavController().navigate(action)
-
-                // TODO make a progress bar
-                Toast.makeText(context, "Loading Data...", Toast.LENGTH_LONG).show()
             }
         } else {
             val currentAnime = recentResponse!![position]

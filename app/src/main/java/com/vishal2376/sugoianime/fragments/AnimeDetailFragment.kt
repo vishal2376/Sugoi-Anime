@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.vishal2376.sugoianime.adapters.AnimeAdapter
 import com.vishal2376.sugoianime.databinding.FragmentAnimeDetailBinding
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
+import com.vishal2376.sugoianime.util.NetworkResult
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +52,19 @@ class AnimeDetailFragment : Fragment() {
 
     private fun bindObservers() {
         animeViewModel.animeDetailLiveData.observe(viewLifecycleOwner) {
-            setLayout(it.data!!)
+            binding.progressBar.isVisible = false
+
+            when (it) {
+                is NetworkResult.Success -> {
+                    setLayout(it.data!!)
+                }
+                is NetworkResult.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResult.Loading -> {
+                    binding.progressBar.isVisible = true
+                }
+            }
         }
     }
 

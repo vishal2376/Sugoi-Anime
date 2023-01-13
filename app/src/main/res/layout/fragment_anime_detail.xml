@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
+      <!--    progress bar-->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animeVisualContainer" />
+
     <!--   anime visual info + blur image-->
     <RelativeLayout
         android:id="@+id/animeVisualContainer"
@@ -117,7 +127,8 @@
 
     <!--  more anime detail-->
     <ScrollView
-        android:layout_width="wrap_content"
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_25sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -168,8 +179,7 @@
                     android:fontFamily="@font/hind_madurai"
                     android:textColor="@color/colorGrey"
                     android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold"
-                    tools:text="Completed" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -196,8 +206,7 @@
                     android:fontFamily="@font/hind_madurai"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold"
-                    tools:text="220" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -224,8 +233,7 @@
                     android:fontFamily="@font/hind_madurai"
                     android:textColor="@color/colorGrey"
                     android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold"
-                    tools:text="2002" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -249,7 +257,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/hind_madurai"
-                android:text="@string/dummy_text"
                 android:textColor="@color/colorGrey"
                 android:textSize="@dimen/_12ssp" />
 

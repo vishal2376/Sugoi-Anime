@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vishal2376.sugoianime.adapters.AnimeAdapter
 import com.vishal2376.sugoianime.adapters.RecentAdapter
 import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
-import com.vishal2376.sugoianime.models.AnimeRecentResponseItem
 import com.vishal2376.sugoianime.util.NetworkResult
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +25,7 @@ class HomeFragment : Fragment() {
 
     private val animeViewModel by viewModels<AnimeViewModel>()
     private lateinit var recentAdapter: RecentAdapter
+    private lateinit var popularAdapter: AnimeAdapter
 
 
     override fun onCreateView(
@@ -35,7 +35,8 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        recentAdapter = RecentAdapter(requireContext(), ::onAnimeClicked)
+        recentAdapter = RecentAdapter(requireContext(), ::onAnimeItemClicked)
+        popularAdapter = AnimeAdapter(requireContext(), ::onAnimeItemClicked)
 
         return binding.root
     }
@@ -59,7 +60,7 @@ class HomeFragment : Fragment() {
 
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.rvPopular.adapter = AnimeAdapter(requireContext(), animeList = it.data)
+                    popularAdapter.submitList(it.data)
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -90,15 +91,17 @@ class HomeFragment : Fragment() {
     private fun setLayout() {
         binding.rvPopular.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPopular.adapter = popularAdapter
+
         binding.rvRecent.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvRecent.adapter = recentAdapter
     }
 
-    private fun onAnimeClicked(currentAnime: AnimeRecentResponseItem) {
+    private fun onAnimeItemClicked(currentAnimeId: String) {
         //pass animeId to anime Detail fragment
         val action =
-            HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
+            HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnimeId)
         findNavController().navigate(action)
     }
 

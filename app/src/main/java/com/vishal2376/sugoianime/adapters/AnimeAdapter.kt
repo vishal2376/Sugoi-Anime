@@ -2,78 +2,77 @@ package com.vishal2376.sugoianime.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
-import com.vishal2376.sugoianime.fragments.nav.HomeFragmentDirections
-import com.vishal2376.sugoianime.models.AnimeList
-import com.vishal2376.sugoianime.models.AnimeRecentResponse
+import com.vishal2376.sugoianime.databinding.AnimeGridItemBinding
+import com.vishal2376.sugoianime.models.AnimeListItem
 
 class AnimeAdapter(
     private val context: Context,
-    private val animeList: AnimeList? = null,
-    private val recentResponse: AnimeRecentResponse? = null
+    private val onAnimeClicked: (String) -> Unit
 ) :
-    Adapter<AnimeAdapter.AnimeViewHolder>() {
+    ListAdapter<AnimeListItem, AnimeAdapter.AnimeViewHolder>(ComparatorDiffUtil()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimeViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.anime_grid_item, parent, false)
-        return AnimeViewHolder(view)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): AnimeAdapter.AnimeViewHolder {
+        val binding =
+            AnimeGridItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AnimeViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AnimeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AnimeAdapter.AnimeViewHolder, position: Int) {
+        val currentAnime = getItem(position)
 
-        if (animeList != null) {
-            val currentAnime = animeList[position]
-
-            holder.animeTitle.text = currentAnime.animeTitle
-            //image setup
-            Glide.with(context)
-                .load(currentAnime.animeImg)
-                .into(holder.animeImage)
-
-            //on click
-            holder.itemView.setOnClickListener {
-                //pass current animeID to AnimeDetail Fragment
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
-                it.findNavController().navigate(action)
-            }
-        } else {
-            val currentAnime = recentResponse!![position]
-
-            holder.animeTitle.text = currentAnime.animeTitle
-            //image setup
-            Glide.with(context)
-                .load(currentAnime.animeImg)
-                .into(holder.animeImage)
-
-            //on click
-            holder.itemView.setOnClickListener {
-                //pass current animeID to AnimeDetail Fragment
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
-                it.findNavController().navigate(action)
-            }
+        currentAnime.let {
+            holder.bind(it)
         }
 
         //animation
         holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.popup_anim)
+
     }
 
-    override fun getItemCount(): Int {
-        return animeList?.size ?: recentResponse!!.size
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<AnimeListItem>() {
+        override fun areItemsTheSame(
+            oldItem: AnimeListItem,
+            newItem: AnimeListItem
+        ): Boolean {
+            return oldItem.animeId == newItem.animeId
+        }
+
+        override fun areContentsTheSame(
+            oldItem: AnimeListItem,
+            newItem: AnimeListItem
+        ): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
-    class AnimeViewHolder(itemView: View) : ViewHolder(itemView) {
-        val animeTitle = itemView.findViewById<TextView>(R.id.tvAnimeTitleGI)
-        val animeImage = itemView.findViewById<ImageView>(R.id.imgAnimeGI)
+    inner class AnimeViewHolder(private val binding: AnimeGridItemBinding) :
+        ViewHolder(binding.root) {
+
+        fun bind(anime: AnimeListItem) {
+
+            //set anime info
+            binding.tvAnimeTitleGI.text = anime.animeTitle
+
+            //image setup
+            Glide.with(context)
+                .load(anime.animeImg)
+                .into(binding.imgAnimeGI)
+
+            //onclick
+            binding.root.setOnClickListener {
+                onAnimeClicked(anime.animeId)
+            }
+        }
     }
 }

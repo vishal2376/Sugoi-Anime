@@ -14,7 +14,7 @@ import com.vishal2376.sugoianime.models.AnimeRecentResponseItem
 
 class RecentAdapter(
     private val context: Context,
-    private val onAnimeClicked: (AnimeRecentResponseItem) -> Unit
+    private val onAnimeClicked: (String) -> Unit
 ) :
     ListAdapter<AnimeRecentResponseItem, RecentAdapter.RecentViewHolder>(ComparatorDiffUtil()) {
 
@@ -68,7 +68,7 @@ class RecentAdapter(
 
             //onclick
             binding.root.setOnClickListener {
-                onAnimeClicked(anime)
+                onAnimeClicked(anime.animeId)
             }
         }
     }

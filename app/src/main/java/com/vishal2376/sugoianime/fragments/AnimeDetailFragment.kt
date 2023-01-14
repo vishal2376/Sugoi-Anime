@@ -51,7 +51,7 @@ class AnimeDetailFragment : Fragment() {
 
         //buttons
         binding.fabShareAD.setOnClickListener {
-            val shareUrl = Constants.SHARE_BASE_URL + args.animeID
+            val shareUrl = Constants.SHARE_MESSAGE + Constants.SHARE_BASE_URL + args.animeID
             shareAnime(shareUrl)
         }
 
@@ -59,11 +59,9 @@ class AnimeDetailFragment : Fragment() {
 
     private fun shareAnime(shareUrl: String) {
 
-        val shareText = Constants.SHARE_MESSAGE + shareUrl
-
         val shareIntent = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, shareText)
+            putExtra(Intent.EXTRA_TEXT, shareUrl)
             type = "text/plain"
         }, "Share Anime")
 

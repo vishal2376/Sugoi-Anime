@@ -1,5 +1,6 @@
 package com.vishal2376.sugoianime.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.vishal2376.sugoianime.adapters.AnimeAdapter
 import com.vishal2376.sugoianime.databinding.FragmentAnimeDetailBinding
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
+import com.vishal2376.sugoianime.util.Constants
 import com.vishal2376.sugoianime.util.NetworkResult
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +49,25 @@ class AnimeDetailFragment : Fragment() {
 
         bindObservers()
 
+        //buttons
+        binding.fabShareAD.setOnClickListener {
+            val shareUrl = Constants.SHARE_BASE_URL + args.animeID
+            shareAnime(shareUrl)
+        }
+
+    }
+
+    private fun shareAnime(shareUrl: String) {
+
+        val shareText = Constants.SHARE_MESSAGE + shareUrl
+
+        val shareIntent = Intent.createChooser(Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, shareText)
+            type = "text/plain"
+        }, "Share Anime")
+
+        requireActivity().startActivity(shareIntent)
     }
 
     private fun bindObservers() {

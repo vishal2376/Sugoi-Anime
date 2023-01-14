@@ -69,7 +69,7 @@ class AnimeDetailFragment : Fragment() {
     }
 
     private fun setLayout(it: AnimeDetail) {
-        binding.tvAnimeTitleAD.text = it.animeTitle
+        binding.toolBarAD.title = it.animeTitle
         binding.tvAnimeSynopsisAD.text = it.synopsis
         binding.tvInfoDateAD.text = it.releasedDate
         binding.tvInfoEpisodeAD.text = it.totalEpisodes

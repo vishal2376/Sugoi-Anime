@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vishal2376.sugoianime.adapters.AnimeAdapter
 import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
@@ -27,7 +26,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -48,7 +47,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun bindObservers() {
-        animeViewModel.popularAnimeLiveData.observe(viewLifecycleOwner, Observer {
+        animeViewModel.popularAnimeLiveData.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = false
 
             when (it) {
@@ -63,9 +62,9 @@ class HomeFragment : Fragment() {
                 }
             }
 
-        })
+        }
 
-        animeViewModel.recentAnimeLiveData.observe(viewLifecycleOwner, Observer {
+        animeViewModel.recentAnimeLiveData.observe(viewLifecycleOwner) {
 
             when (it) {
                 is NetworkResult.Success -> {
@@ -79,7 +78,7 @@ class HomeFragment : Fragment() {
                     binding.progressBar.isVisible = true
                 }
             }
-        })
+        }
     }
 
     private fun setLayout() {

@@ -8,9 +8,12 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vishal2376.sugoianime.adapters.AnimeAdapter
+import com.vishal2376.sugoianime.adapters.RecentAdapter
 import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
+import com.vishal2376.sugoianime.models.AnimeRecentResponseItem
 import com.vishal2376.sugoianime.util.NetworkResult
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +25,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val animeViewModel by viewModels<AnimeViewModel>()
+    private lateinit var recentAdapter: RecentAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,15 +35,17 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //get data
-        animeViewModel.getPopularAnime()
-        animeViewModel.getRecentAnime()
+        recentAdapter = RecentAdapter(requireContext(), ::onAnimeClicked)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //get data
+        animeViewModel.getRecentAnime()
+        animeViewModel.getPopularAnime()
 
         setLayout()
 
@@ -68,8 +75,7 @@ class HomeFragment : Fragment() {
 
             when (it) {
                 is NetworkResult.Success -> {
-                    binding.rvRecent.adapter =
-                        AnimeAdapter(requireContext(), recentResponse = it.data)
+                    recentAdapter.submitList(it.data)
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -86,6 +92,14 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvRecent.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRecent.adapter = recentAdapter
+    }
+
+    private fun onAnimeClicked(currentAnime: AnimeRecentResponseItem) {
+        //pass animeId to anime Detail fragment
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(currentAnime.animeId)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

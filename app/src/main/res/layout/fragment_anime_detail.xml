@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Toolbar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolBarAD"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
@@ -21,6 +22,7 @@
             app:contentScrim="@color/colorPrimary"
             app:expandedTitleTextAppearance="@style/Theme.Toolbar"
             app:layout_scrollFlags="snap|scroll|exitUntilCollapsed"
+            app:title="@string/anime_title"
             app:titleTextEllipsize="end">
 
             <!--        anime image-->
@@ -45,11 +47,9 @@
 
             <!--            anime title-->
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolBarAD"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:title="@string/anime_title" />
+                app:layout_collapseMode="pin" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -197,7 +197,7 @@
         android:id="@+id/fabFavoriteAD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_80sdp"
+        android:layout_marginEnd="@dimen/_70sdp"
         android:baselineAlignBottom="false"
         android:src="@drawable/ic_favorite"
         app:layout_anchor="@id/appBarAD"
@@ -208,7 +208,7 @@
         android:id="@+id/fabShareAD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
         android:baselineAlignBottom="false"
         android:src="@drawable/ic_share"
         app:layout_anchor="@id/appBarAD"

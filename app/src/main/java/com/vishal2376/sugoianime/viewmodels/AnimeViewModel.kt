@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.vishal2376.sugoianime.models.AnimeList
 import com.vishal2376.sugoianime.models.AnimeRecentResponse
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
+import com.vishal2376.sugoianime.models.search.SearchResponse
 import com.vishal2376.sugoianime.repository.AnimeRepository
 import com.vishal2376.sugoianime.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +20,7 @@ class AnimeViewModel @Inject constructor(private val repository: AnimeRepository
     val movieAnimeLiveData: LiveData<NetworkResult<AnimeList>> get() = repository.movieAnimeLiveData
     val animeDetailLiveData: LiveData<NetworkResult<AnimeDetail>> get() = repository.animeDetailLiveData
     val recentAnimeLiveData: LiveData<NetworkResult<AnimeRecentResponse>> get() = repository.recentAnimeLiveData
+    val searchAnimeLiveData: LiveData<NetworkResult<SearchResponse>> get() = repository.searchAnimeLiveData
 
     fun getPopularAnime() {
         viewModelScope.launch {
@@ -26,7 +28,7 @@ class AnimeViewModel @Inject constructor(private val repository: AnimeRepository
         }
     }
 
-    fun getRecentAnime(){
+    fun getRecentAnime() {
         viewModelScope.launch {
             repository.getRecentAnime()
         }
@@ -41,6 +43,12 @@ class AnimeViewModel @Inject constructor(private val repository: AnimeRepository
     fun getAnimeDetail(animeID: String) {
         viewModelScope.launch {
             repository.getAnimeDetail(animeID)
+        }
+    }
+
+    fun getAnimeSearch(query: String) {
+        viewModelScope.launch {
+            repository.getAnimeSearch(query)
         }
     }
 }

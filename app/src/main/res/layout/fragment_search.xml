@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
 
     <!--    action bar-->
     <LinearLayout
@@ -50,8 +50,8 @@
     </LinearLayout>
 
     <!--    search bar-->
-    <EditText
-        android:id="@+id/searchBar"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/searchBarFS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
@@ -59,8 +59,8 @@
         android:drawablePadding="@dimen/_5sdp"
         android:gravity="center_vertical"
         android:hint="@string/search_anime"
-        android:inputType="text"
         android:imeOptions="actionSearch"
+        android:inputType="text"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_10sdp"
         android:textColorHint="@color/colorGrey"
@@ -70,63 +70,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionBar" />
 
-    <!--      Latest Recycler view -->
-    <TextView
-        android:id="@+id/tvLatest"
+       <TextView
+        android:id="@+id/tvResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:drawablePadding="@dimen/_5sdp"
         android:fontFamily="@font/montserrat"
-        android:text="@string/latest_episodes"
+        android:text="@string/results"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRecent"
+        android:id="@+id/rvResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLatest"
-        tools:listitem="@layout/anime_grid_item" />
-
-
-    <!--      Latest Recycler view -->
-    <TextView
-        android:id="@+id/tvPopular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:drawablePadding="@dimen/_5sdp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/popular_anime"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_13ssp"
-        android:textStyle="bold"
-        app:drawableStartCompat="@drawable/bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvRecent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPopular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPopular"
-        tools:listitem="@layout/anime_grid_item" />
+        app:layout_constraintTop_toBottomOf="@+id/tvResults"
+        tools:listitem="@layout/anime_search_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -51,6 +52,19 @@ class HomeFragment : Fragment() {
         setLayout()
 
         bindObservers()
+
+        //buttons
+        binding.searchBar.setOnEditorActionListener { _, i, _ ->
+            if (i == EditorInfo.IME_ACTION_SEARCH) {
+                val query = binding.searchBar.text.toString()
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(query)
+                findNavController().navigate(action)
+
+                true
+            } else {
+                false
+            }
+        }
 
     }
 

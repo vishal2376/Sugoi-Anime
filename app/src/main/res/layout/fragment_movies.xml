@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBarFM" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
 
     <!--    action bar-->
     <LinearLayout
@@ -51,7 +51,7 @@
 
     <!--    search bar-->
     <TextView
-        android:id="@+id/searchBarFM"
+        android:id="@+id/searchBarFS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
@@ -70,7 +70,7 @@
 
     <!--      Latest Recycler view -->
     <TextView
-        android:id="@+id/tvMovies"
+        android:id="@+id/tvResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
@@ -83,7 +83,7 @@
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBarFM" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovies"
@@ -93,7 +93,7 @@
         android:layout_marginHorizontal="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMovies"
+        app:layout_constraintTop_toBottomOf="@+id/tvResults"
         tools:listitem="@layout/anime_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,7 +77,7 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:drawablePadding="@dimen/_5sdp"
         android:fontFamily="@font/montserrat"
-        android:text="@string/recently_updated"
+        android:text="@string/latest_episodes"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"

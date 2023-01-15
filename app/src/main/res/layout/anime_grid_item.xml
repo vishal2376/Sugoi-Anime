@@ -12,8 +12,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardElevation="@dimen/_10sdp"
-        app:cardCornerRadius="@dimen/_15sdp">
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:cardElevation="@dimen/_10sdp">
 
         <!--        anime image-->
         <ImageView
@@ -22,6 +22,24 @@
             android:layout_height="@dimen/_140sdp"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/backgrounds/scenic" />
+
+        <!--        episode number-->
+        <TextView
+            android:id="@+id/tvEpisodeNumber"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/round_card_alpha"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:visibility="gone">
+
+        </TextView>
 
     </androidx.cardview.widget.CardView>
 
@@ -32,12 +50,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
         android:ellipsize="end"
-        android:singleLine="true"
-        android:text="@string/anime_title"
         android:fontFamily="@font/hind_madurai"
         android:paddingHorizontal="@dimen/_2sdp"
+        android:singleLine="true"
+        android:text="@string/anime_title"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_12ssp"/>
+        android:textSize="@dimen/_12ssp" />
 
 </LinearLayout>

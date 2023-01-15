@@ -2,6 +2,7 @@ package com.vishal2376.sugoianime.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
@@ -60,6 +61,8 @@ class RecentAdapter(
 
             //set anime info
             binding.tvAnimeTitleGI.text = anime.animeTitle
+            binding.tvEpisodeNumber.text = anime.episodeNum
+            binding.tvEpisodeNumber.visibility = View.VISIBLE
 
             //image setup
             Glide.with(context)

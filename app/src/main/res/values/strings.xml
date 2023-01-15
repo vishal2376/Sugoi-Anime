@@ -9,7 +9,6 @@
     <string name="library">Library</string>
     <string name="anime_title">Anime Title</string>
     <string name="search_anime">Search Anime</string>
-    <string name="recently_updated">Recently Updated</string>
     <string name="popular_anime">Popular Anime</string>
     <string name="status">Status</string>
     <string name="synopsis">Synopsis</string>
@@ -20,4 +19,5 @@
     <string name="other_name">ナルト</string>
     <string name="released_date">Released Date</string>
     <string name="genres">Genres</string>
+    <string name="latest_episodes">Latest Episodes</string>
 </resources>

@@ -59,6 +59,10 @@ class AnimeDetailFragment : Fragment() {
             shareAnime(shareUrl)
         }
 
+        binding.fabFavoriteAD.setOnClickListener{
+            Toast.makeText(requireContext(),"Not implemented Yet",Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun shareAnime(shareUrl: String) {

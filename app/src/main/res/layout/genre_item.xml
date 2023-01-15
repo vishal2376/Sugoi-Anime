@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:id="@+id/tvGenreGI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Super Power"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/montserrat"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:background="@drawable/round_card"/>
+
+</LinearLayout>

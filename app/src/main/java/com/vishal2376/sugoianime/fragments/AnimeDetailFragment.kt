@@ -10,7 +10,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
+import com.vishal2376.sugoianime.adapters.GenreAdapter
 import com.vishal2376.sugoianime.databinding.FragmentAnimeDetailBinding
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
 import com.vishal2376.sugoianime.util.Constants
@@ -96,6 +100,9 @@ class AnimeDetailFragment : Fragment() {
         Glide.with(requireContext())
             .load(it.animeImg)
             .into(binding.imgAnimeAD)
+
+        binding.rvGenreAD.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        binding.rvGenreAD.adapter = GenreAdapter(it.genres)
     }
 
     override fun onDestroyView() {

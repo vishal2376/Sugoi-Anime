@@ -19,4 +19,5 @@
     <string name="total_episodes">Total Episodes</string>
     <string name="other_name">ナルト</string>
     <string name="released_date">Released Date</string>
+    <string name="genres">Genres</string>
 </resources>

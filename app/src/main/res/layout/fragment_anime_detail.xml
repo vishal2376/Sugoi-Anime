@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
@@ -187,6 +188,26 @@
                 android:fontFamily="@font/hind_madurai"
                 android:textColor="@color/colorGrey"
                 android:textSize="@dimen/_12ssp" />
+
+            <!--        genres-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/hind_madurai"
+                android:text="@string/genres"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/bar" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGenreAD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                tools:listitem="@layout/genre_item" />
 
         </LinearLayout>
 

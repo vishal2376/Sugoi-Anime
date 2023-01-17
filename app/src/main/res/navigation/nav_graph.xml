@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
     </fragment>
     <fragment
         android:id="@+id/libraryFragment"
@@ -52,6 +55,9 @@
             android:name="animeID"
             app:argType="string"
             android:defaultValue="null" />
+        <action
+            android:id="@+id/action_animeDetailFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -66,4 +72,9 @@
             app:argType="string"
             android:defaultValue="null" />
     </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.vishal2376.sugoianime.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player" />
 </navigation>

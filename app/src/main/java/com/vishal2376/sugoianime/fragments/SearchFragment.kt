@@ -46,7 +46,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //get data
-        animeViewModel.getAnimeSearch(args.query)
+        animeViewModel.getSearchAnime(args.query)
 
         setLayout()
 
@@ -56,7 +56,7 @@ class SearchFragment : Fragment() {
         binding.searchBarFS.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_SEARCH) {
                 val query = binding.searchBarFS.text.toString()
-                animeViewModel.getAnimeSearch(query)
+                animeViewModel.getSearchAnime(query)
                 true
             } else {
                 false
@@ -70,7 +70,7 @@ class SearchFragment : Fragment() {
             binding.progressBar.isVisible = false
             when (it) {
                 is NetworkResult.Success -> {
-                    adapter.submitList(it.data)
+                    adapter.submitList(it.data!!.results)
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()

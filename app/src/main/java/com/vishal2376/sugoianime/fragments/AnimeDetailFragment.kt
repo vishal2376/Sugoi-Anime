@@ -10,13 +10,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.adapters.GenreAdapter
 import com.vishal2376.sugoianime.databinding.FragmentAnimeDetailBinding
-import com.vishal2376.sugoianime.models.detail.AnimeDetail
+import com.vishal2376.sugoianime.models.info.InfoResponse
 import com.vishal2376.sugoianime.util.Constants
 import com.vishal2376.sugoianime.util.NetworkResult
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
@@ -42,7 +40,7 @@ class AnimeDetailFragment : Fragment() {
         _binding = FragmentAnimeDetailBinding.inflate(inflater, container, false)
 
         //fetching the data
-        animeViewModel.getAnimeDetail(args.animeID)
+        animeViewModel.getAnimeInfo(args.animeID)
 
         return binding.root
     }
@@ -59,8 +57,8 @@ class AnimeDetailFragment : Fragment() {
             shareAnime(shareUrl)
         }
 
-        binding.fabFavoriteAD.setOnClickListener{
-            Toast.makeText(requireContext(),"Not implemented Yet",Toast.LENGTH_SHORT).show()
+        binding.fabFavoriteAD.setOnClickListener {
+            Toast.makeText(requireContext(), "Not implemented Yet", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -77,7 +75,7 @@ class AnimeDetailFragment : Fragment() {
     }
 
     private fun bindObservers() {
-        animeViewModel.animeDetailLiveData.observe(viewLifecycleOwner) {
+        animeViewModel.animeInfoLiveData.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = false
 
             when (it) {
@@ -94,18 +92,19 @@ class AnimeDetailFragment : Fragment() {
         }
     }
 
-    private fun setLayout(it: AnimeDetail) {
-        binding.toolBarAD.title = it.animeTitle
-        binding.tvAnimeSynopsisAD.text = it.synopsis
-        binding.tvInfoDateAD.text = it.releasedDate
-        binding.tvInfoEpisodeAD.text = it.totalEpisodes
+    private fun setLayout(it: InfoResponse) {
+        binding.toolBarAD.title = it.title
+        binding.tvAnimeSynopsisAD.text = it.description
+        binding.tvInfoDateAD.text = it.releaseDate
+        binding.tvInfoEpisodeAD.text = it.totalEpisodes.toString()
         binding.tvInfoStatusAD.text = it.status
 
         Glide.with(requireContext())
-            .load(it.animeImg)
+            .load(it.image)
             .into(binding.imgAnimeAD)
 
-        binding.rvGenreAD.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        binding.rvGenreAD.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvGenreAD.adapter = GenreAdapter(it.genres)
     }
 

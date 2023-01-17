@@ -1,9 +1,9 @@
 package com.vishal2376.sugoianime.api
 
-import com.vishal2376.sugoianime.models.AnimeList
-import com.vishal2376.sugoianime.models.AnimeRecentResponse
-import com.vishal2376.sugoianime.models.detail.AnimeDetail
+import com.vishal2376.sugoianime.models.info.InfoResponse
+import com.vishal2376.sugoianime.models.watch.WatchResponse
 import com.vishal2376.sugoianime.models.search.SearchResponse
+import com.vishal2376.sugoianime.models.top.TopResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,26 +11,39 @@ import retrofit2.http.Query
 
 interface AnimeAPI {
 
-    @GET("/popular")
-    suspend fun getPopularAnime(): Response<AnimeList>
+    @GET("/anime/gogoanime/{query}")
+    suspend fun getSearchAnime(
+        @Path("query") query: String,
+        @Query("page") page: Int = 1
+    ): Response<SearchResponse>
 
-    @GET("/recent-release")
-    suspend fun getRecentAnime(
-    ): Response<AnimeRecentResponse>
+    @GET("/anime/gogoanime/info/{id}")
+    suspend fun getAnimeInfo(
+        @Path("id") id: String
+    ): Response<InfoResponse>
 
-    @GET("/anime-movies")
-    suspend fun getMovieAnime(
-        @Query("page") page: Int
-    ): Response<AnimeList>
+    @GET("/anime/gogoanime/top-airing")
+    suspend fun getTopAnime(
+        @Query("page") page: Int = 1
+    ): Response<TopResponse>
 
-    @GET("/anime-details/{animeID}")
-    suspend fun getAnimeDetail(
-        @Path("animeID") animeID: String
-    ): Response<AnimeDetail>
 
-    @GET("/search")
-    suspend fun getAnimeSearch(
-        @Query("keyw") query: String
+    @GET("/anime/gogoanime/recent-episodes")
+    suspend fun getRecentEpisodes(
+        @Query("type") type: Int = 1, //1 - Japanese with SUB , 2 - English Dub without SUB
+        @Query("page") page: Int = 1
+    ): Response<TopResponse>
+
+
+    @GET("/anime/gogoanime/watch/{episodeId}")
+    suspend fun getStreamLink(
+        @Path("episodeId") episodeId: String,
+        @Query("server") server: String = "gogocdn" // Available servers - "gogocdn" , "steamsb"
+    ): Response<WatchResponse>
+
+    @GET("/anime/gogoanime/servers/{episodeId}")
+    suspend fun getAvailableServer(
+        @Path("episodeId") episodeId: String
     ): Response<SearchResponse>
 
 }

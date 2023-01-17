@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vishal2376.sugoianime.adapters.TopAdapter
 import com.vishal2376.sugoianime.adapters.RecentAdapter
+import com.vishal2376.sugoianime.adapters.TopAdapter
 import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
 import com.vishal2376.sugoianime.util.NetworkResult
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
     private val animeViewModel by viewModels<AnimeViewModel>()
     private lateinit var recentAdapter: RecentAdapter
-    private lateinit var popularAdapter: TopAdapter
+    private lateinit var topAdapter: TopAdapter
 
 
     override fun onCreateView(
@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         recentAdapter = RecentAdapter(requireContext(), ::onAnimeItemClicked)
-        popularAdapter = TopAdapter(requireContext(), ::onAnimeItemClicked)
+        topAdapter = TopAdapter(requireContext(), ::onAnimeItemClicked)
 
         return binding.root
     }
@@ -46,8 +46,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //get data
-        animeViewModel.getRecentAnime()
-        animeViewModel.getPopularAnime()
+        animeViewModel.getRecentEpisodes()
+        animeViewModel.getTopAnime()
 
         setLayout()
 
@@ -69,12 +69,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun bindObservers() {
-        animeViewModel.popularAnimeLiveData.observe(viewLifecycleOwner) {
+        animeViewModel.topAnimeLiveData.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = false
 
             when (it) {
                 is NetworkResult.Success -> {
-                    popularAdapter.submitList(it.data)
+                    topAdapter.submitList(it.data!!.results)
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -86,11 +86,11 @@ class HomeFragment : Fragment() {
 
         }
 
-        animeViewModel.recentAnimeLiveData.observe(viewLifecycleOwner) {
+        animeViewModel.recentEpisodesLiveData.observe(viewLifecycleOwner) {
 
             when (it) {
                 is NetworkResult.Success -> {
-                    recentAdapter.submitList(it.data)
+                    recentAdapter.submitList(it.data!!.results)
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -103,9 +103,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setLayout() {
-        binding.rvPopular.layoutManager =
+        binding.rvTop.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvPopular.adapter = popularAdapter
+        binding.rvTop.adapter = topAdapter
 
         binding.rvRecent.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

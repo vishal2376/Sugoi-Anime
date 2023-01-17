@@ -72,14 +72,14 @@
 
     <!--      Latest Recycler view -->
     <TextView
-        android:id="@+id/tvLatest"
+        android:id="@+id/tvRecent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:drawablePadding="@dimen/_5sdp"
         android:fontFamily="@font/montserrat"
-        android:text="@string/latest_episodes"
+        android:text="@string/recent_episodes"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
@@ -96,20 +96,20 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLatest"
+        app:layout_constraintTop_toBottomOf="@+id/tvRecent"
         tools:listitem="@layout/anime_grid_item" />
 
 
     <!--      Latest Recycler view -->
     <TextView
-        android:id="@+id/tvPopular"
+        android:id="@+id/tvTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:drawablePadding="@dimen/_5sdp"
         android:fontFamily="@font/montserrat"
-        android:text="@string/popular_anime"
+        android:text="@string/top_airing"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rvRecent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPopular"
+        android:id="@+id/rvTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
@@ -126,7 +126,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPopular"
+        app:layout_constraintTop_toBottomOf="@+id/tvTop"
         tools:listitem="@layout/anime_grid_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

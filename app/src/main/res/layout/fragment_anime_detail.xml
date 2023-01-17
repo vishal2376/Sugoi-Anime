@@ -174,7 +174,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:drawablePadding="@dimen/_5sdp"
                 android:fontFamily="@font/hind_madurai"
-                android:text="@string/synopsis"
+                android:text="@string/description"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"

@@ -1,10 +1,12 @@
-package com.vishal2376.sugoianime
+package com.vishal2376.sugoianime.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.vishal2376.sugoianime.R
+
 class PlayerFragment : Fragment() {
 
     override fun onCreateView(

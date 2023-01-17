@@ -4,11 +4,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
-    <string name="movies">Movies</string>
+    <string name="manga">Manga</string>
     <string name="explore">Explore</string>
     <string name="library">Library</string>
     <string name="anime_title">Anime Title</string>
     <string name="search_anime">Search Anime</string>
+    <string name="search_manga">Search Manga</string>
     <string name="top_airing">Top Airing</string>
     <string name="status">Status</string>
     <string name="synopsis">Synopsis</string>

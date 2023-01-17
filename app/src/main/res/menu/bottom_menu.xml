@@ -11,9 +11,9 @@
         android:title="@string/explore" />
 
     <item
-        android:id="@+id/itemMovies"
-        android:icon="@drawable/ic_movie"
-        android:title="@string/movies" />
+        android:id="@+id/itemManga"
+        android:icon="@drawable/ic_manga"
+        android:title="@string/manga" />
 
     <item
         android:id="@+id/itemLibrary"

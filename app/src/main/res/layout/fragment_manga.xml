@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFM" />
 
     <!--    action bar-->
     <LinearLayout
@@ -51,14 +51,14 @@
 
     <!--    search bar-->
     <TextView
-        android:id="@+id/searchBarFS"
+        android:id="@+id/searchBarFM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
         android:background="@drawable/round_card"
         android:drawablePadding="@dimen/_5sdp"
         android:gravity="center_vertical"
-        android:hint="@string/search_anime"
+        android:hint="@string/search_manga"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_10sdp"
         android:textColorHint="@color/colorGrey"
@@ -70,30 +70,30 @@
 
     <!--      Latest Recycler view -->
     <TextView
-        android:id="@+id/tvResults"
+        android:id="@+id/tvManga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:drawablePadding="@dimen/_5sdp"
         android:fontFamily="@font/montserrat"
-        android:text="@string/movies"
+        android:text="@string/manga"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFM" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMovies"
+        android:id="@+id/rvManga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvResults"
+        app:layout_constraintTop_toBottomOf="@+id/tvManga"
         tools:listitem="@layout/anime_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

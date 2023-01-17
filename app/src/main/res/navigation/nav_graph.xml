@@ -35,18 +35,6 @@
         android:label="Explore"
         tools:layout="@layout/fragment_explore" />
     <fragment
-        android:id="@+id/moviesFragment"
-        android:name="com.vishal2376.sugoianime.fragments.nav.MovieFragment"
-        android:label="Movies"
-        tools:layout="@layout/fragment_movies" >
-        <action
-            android:id="@+id/action_moviesFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
-        <action
-            android:id="@+id/action_moviesFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/animeDetailFragment"
         android:name="com.vishal2376.sugoianime.fragments.AnimeDetailFragment"
         android:label="fragment_anime_detail"
@@ -74,7 +62,12 @@
     </fragment>
     <fragment
         android:id="@+id/playerFragment"
-        android:name="com.vishal2376.sugoianime.PlayerFragment"
+        android:name="com.vishal2376.sugoianime.fragments.PlayerFragment"
         android:label="fragment_player"
         tools:layout="@layout/fragment_player" />
+    <fragment
+        android:id="@+id/mangaFragment"
+        android:name="com.vishal2376.sugoianime.fragments.nav.MangaFragment"
+        android:label="fragment_manga"
+        tools:layout="@layout/fragment_manga" />
 </navigation>

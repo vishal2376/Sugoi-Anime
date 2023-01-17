@@ -3,7 +3,11 @@ package com.vishal2376.sugoianime.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vishal2376.sugoianime.models.detail.AnimeDetail
+import com.vishal2376.sugoianime.models.info.InfoResponse
+import com.vishal2376.sugoianime.models.recent.RecentResponse
+import com.vishal2376.sugoianime.models.search.SearchResponse
+import com.vishal2376.sugoianime.models.streamlink.StreamLinkResponse
+import com.vishal2376.sugoianime.models.top.TopResponse
 import com.vishal2376.sugoianime.repository.AnimeRepository
 import com.vishal2376.sugoianime.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,39 +17,39 @@ import javax.inject.Inject
 @HiltViewModel
 class AnimeViewModel @Inject constructor(private val repository: AnimeRepository) : ViewModel() {
 
-    val popularAnimeLiveData: LiveData<NetworkResult<AnimeList>> get() = repository.popularAnimeLiveData
-    val movieAnimeLiveData: LiveData<NetworkResult<AnimeList>> get() = repository.movieAnimeLiveData
-    val animeDetailLiveData: LiveData<NetworkResult<AnimeDetail>> get() = repository.animeDetailLiveData
-    val recentAnimeLiveData: LiveData<NetworkResult<AnimeRecentResponse>> get() = repository.recentAnimeLiveData
     val searchAnimeLiveData: LiveData<NetworkResult<SearchResponse>> get() = repository.searchAnimeLiveData
+    val animeInfoLiveData: LiveData<NetworkResult<InfoResponse>> get() = repository.animeInfoLiveData
+    val topAnimeLiveData: LiveData<NetworkResult<TopResponse>> get() = repository.topAnimeLiveData
+    val recentEpisodesLiveData: LiveData<NetworkResult<RecentResponse>> get() = repository.recentEpisodesLiveData
+    val streamLinkLiveData: LiveData<NetworkResult<StreamLinkResponse>> get() = repository.streamLinkLiveData
 
-    fun getPopularAnime() {
+    fun getSearchAnime(query: String) {
         viewModelScope.launch {
-            repository.getPopularAnime()
+            repository.getSearchAnime(query)
         }
     }
 
-    fun getRecentAnime() {
+    fun getAnimeInfo(id: String) {
         viewModelScope.launch {
-            repository.getRecentAnime()
+            repository.getAnimeInfo(id)
         }
     }
 
-    fun getMovieAnime(pageNumber: Int) {
+    fun getTopAnime() {
         viewModelScope.launch {
-            repository.getMovieAnime(pageNumber)
+            repository.getTopAnime()
         }
     }
 
-    fun getAnimeDetail(animeID: String) {
+    fun getRecentEpisodes() {
         viewModelScope.launch {
-            repository.getAnimeDetail(animeID)
+            repository.getRecentEpisodes()
         }
     }
 
-    fun getAnimeSearch(query: String) {
+    fun getStreamLink(episodeId: String) {
         viewModelScope.launch {
-            repository.getAnimeSearch(query)
+            repository.getStreamLink(episodeId)
         }
     }
 }

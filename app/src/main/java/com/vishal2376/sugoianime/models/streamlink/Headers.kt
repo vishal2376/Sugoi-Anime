@@ -1,4 +1,4 @@
-package com.vishal2376.sugoianime.models.watch
+package com.vishal2376.sugoianime.models.streamlink
 
 data class Headers(
     val Referer: String,

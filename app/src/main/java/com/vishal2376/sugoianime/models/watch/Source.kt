@@ -1,4 +1,4 @@
-package com.vishal2376.sugoianime.models.links
+package com.vishal2376.sugoianime.models.watch
 
 data class Source(
     val isM3U8: Boolean,

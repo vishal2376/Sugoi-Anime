@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBarFM" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
 
     <!--    action bar-->
     <LinearLayout
@@ -51,7 +51,7 @@
 
     <!--    search bar-->
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/searchBarFM"
+        android:id="@+id/searchBarFS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
@@ -84,7 +84,7 @@
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBarFM" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBarFS" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResults"

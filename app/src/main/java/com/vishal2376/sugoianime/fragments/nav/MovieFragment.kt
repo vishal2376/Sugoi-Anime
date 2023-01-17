@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vishal2376.sugoianime.adapters.MovieAdapter
 import com.vishal2376.sugoianime.databinding.FragmentMoviesBinding
-import com.vishal2376.sugoianime.models.AnimeListItem
 import com.vishal2376.sugoianime.util.NetworkResult
 import com.vishal2376.sugoianime.viewmodels.AnimeViewModel
 import dagger.hilt.android.AndroidEntryPoint

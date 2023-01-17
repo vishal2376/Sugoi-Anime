@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.databinding.AnimeGridItemBinding
-import com.vishal2376.sugoianime.models.AnimeListItem
 
 class AnimeAdapter(
     private val context: Context,

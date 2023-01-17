@@ -3,10 +3,7 @@ package com.vishal2376.sugoianime.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vishal2376.sugoianime.api.AnimeAPI
-import com.vishal2376.sugoianime.models.AnimeList
-import com.vishal2376.sugoianime.models.AnimeRecentResponse
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
-import com.vishal2376.sugoianime.models.search.SearchResponse
 import com.vishal2376.sugoianime.util.NetworkResult
 import javax.inject.Inject
 

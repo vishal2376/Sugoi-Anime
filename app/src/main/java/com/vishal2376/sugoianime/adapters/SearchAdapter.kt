@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
-import com.vishal2376.sugoianime.databinding.AnimeGridItemBinding
 import com.vishal2376.sugoianime.databinding.AnimeSearchListItemBinding
-import com.vishal2376.sugoianime.models.search.SearchResponseItem
 
 class SearchAdapter(
     private val context: Context,

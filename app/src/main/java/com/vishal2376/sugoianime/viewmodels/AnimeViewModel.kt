@@ -3,10 +3,7 @@ package com.vishal2376.sugoianime.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vishal2376.sugoianime.models.AnimeList
-import com.vishal2376.sugoianime.models.AnimeRecentResponse
 import com.vishal2376.sugoianime.models.detail.AnimeDetail
-import com.vishal2376.sugoianime.models.search.SearchResponse
 import com.vishal2376.sugoianime.repository.AnimeRepository
 import com.vishal2376.sugoianime.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,6 +1,6 @@
 package com.vishal2376.sugoianime.models.top
 
-data class Result(
+data class TopResultList(
     val genres: List<String>,
     val id: String,
     val image: String,

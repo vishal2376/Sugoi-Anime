@@ -10,23 +10,24 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.databinding.AnimeGridItemBinding
+import com.vishal2376.sugoianime.models.top.TopResultList
 
-class AnimeAdapter(
+class TopAdapter(
     private val context: Context,
     private val onAnimeClicked: (String) -> Unit
 ) :
-    ListAdapter<AnimeListItem, AnimeAdapter.AnimeViewHolder>(ComparatorDiffUtil()) {
+    ListAdapter<TopResultList, TopAdapter.TopViewHolder>(ComparatorDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AnimeAdapter.AnimeViewHolder {
+    ): TopAdapter.TopViewHolder {
         val binding =
             AnimeGridItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AnimeViewHolder(binding)
+        return TopViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AnimeAdapter.AnimeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TopAdapter.TopViewHolder, position: Int) {
         val currentAnime = getItem(position)
 
         currentAnime.let {
@@ -38,39 +39,39 @@ class AnimeAdapter(
 
     }
 
-    class ComparatorDiffUtil : DiffUtil.ItemCallback<AnimeListItem>() {
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<TopResultList>() {
         override fun areItemsTheSame(
-            oldItem: AnimeListItem,
-            newItem: AnimeListItem
+            oldItem: TopResultList,
+            newItem: TopResultList
         ): Boolean {
-            return oldItem.animeId == newItem.animeId
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: AnimeListItem,
-            newItem: AnimeListItem
+            oldItem: TopResultList,
+            newItem: TopResultList
         ): Boolean {
             return oldItem == newItem
         }
 
     }
 
-    inner class AnimeViewHolder(private val binding: AnimeGridItemBinding) :
+    inner class TopViewHolder(private val binding: AnimeGridItemBinding) :
         ViewHolder(binding.root) {
 
-        fun bind(anime: AnimeListItem) {
+        fun bind(anime: TopResultList) {
 
             //set anime info
-            binding.tvAnimeTitleGI.text = anime.animeTitle
+            binding.tvAnimeTitleGI.text = anime.title
 
             //image setup
             Glide.with(context)
-                .load(anime.animeImg)
+                .load(anime.image)
                 .into(binding.imgAnimeGI)
 
             //onclick
             binding.root.setOnClickListener {
-                onAnimeClicked(anime.animeId)
+                onAnimeClicked(anime.id)
             }
         }
     }

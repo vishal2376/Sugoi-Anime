@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vishal2376.sugoianime.adapters.AnimeAdapter
+import com.vishal2376.sugoianime.adapters.TopAdapter
 import com.vishal2376.sugoianime.adapters.RecentAdapter
 import com.vishal2376.sugoianime.databinding.FragmentHomeBinding
 import com.vishal2376.sugoianime.util.NetworkResult
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
     private val animeViewModel by viewModels<AnimeViewModel>()
     private lateinit var recentAdapter: RecentAdapter
-    private lateinit var popularAdapter: AnimeAdapter
+    private lateinit var popularAdapter: TopAdapter
 
 
     override fun onCreateView(
@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         recentAdapter = RecentAdapter(requireContext(), ::onAnimeItemClicked)
-        popularAdapter = AnimeAdapter(requireContext(), ::onAnimeItemClicked)
+        popularAdapter = TopAdapter(requireContext(), ::onAnimeItemClicked)
 
         return binding.root
     }

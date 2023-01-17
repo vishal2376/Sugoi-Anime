@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.databinding.AnimeSearchListItemBinding
+import com.vishal2376.sugoianime.models.search.SearchResultList
 
 class SearchAdapter(
     private val context: Context,
     private val onAnimeClicked: (String) -> Unit
 ) :
-    ListAdapter<SearchResponseItem, SearchAdapter.SearchViewHolder>(ComparatorDiffUtil()) {
+    ListAdapter<SearchResultList, SearchAdapter.SearchViewHolder>(ComparatorDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,17 +39,17 @@ class SearchAdapter(
 
     }
 
-    class ComparatorDiffUtil : DiffUtil.ItemCallback<SearchResponseItem>() {
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<SearchResultList>() {
         override fun areItemsTheSame(
-            oldItem: SearchResponseItem,
-            newItem: SearchResponseItem
+            oldItem: SearchResultList,
+            newItem: SearchResultList
         ): Boolean {
-            return oldItem.animeId == newItem.animeId
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: SearchResponseItem,
-            newItem: SearchResponseItem
+            oldItem: SearchResultList,
+            newItem: SearchResultList
         ): Boolean {
             return oldItem == newItem
         }
@@ -58,20 +59,20 @@ class SearchAdapter(
     inner class SearchViewHolder(private val binding: AnimeSearchListItemBinding) :
         ViewHolder(binding.root) {
 
-        fun bind(anime: SearchResponseItem) {
+        fun bind(anime: SearchResultList) {
 
             //set anime info
-            binding.tvAnimeTitleLI.text = anime.animeTitle
-            binding.tvAnimeStatusLI.text = anime.status
+            binding.tvAnimeTitleLI.text = anime.title
+            binding.tvAnimeStatusLI.text = anime.releaseDate
 
             //image setup
             Glide.with(context)
-                .load(anime.animeImg)
+                .load(anime.image)
                 .into(binding.imgAnimeLI)
 
             //onclick
             binding.root.setOnClickListener {
-                onAnimeClicked(anime.animeId)
+                onAnimeClicked(anime.id)
             }
         }
     }

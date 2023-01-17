@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.vishal2376.sugoianime.R
 import com.vishal2376.sugoianime.databinding.AnimeGridItemBinding
+import com.vishal2376.sugoianime.models.recent.RecentResultList
 
 class RecentAdapter(
     private val context: Context,
     private val onAnimeClicked: (String) -> Unit
 ) :
-    ListAdapter<AnimeRecentResponseItem, RecentAdapter.RecentViewHolder>(ComparatorDiffUtil()) {
+    ListAdapter<RecentResultList, RecentAdapter.RecentViewHolder>(ComparatorDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentViewHolder {
         val binding =
@@ -36,17 +37,17 @@ class RecentAdapter(
 
     }
 
-    class ComparatorDiffUtil : DiffUtil.ItemCallback<AnimeRecentResponseItem>() {
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<RecentResultList>() {
         override fun areItemsTheSame(
-            oldItem: AnimeRecentResponseItem,
-            newItem: AnimeRecentResponseItem
+            oldItem: RecentResultList,
+            newItem: RecentResultList
         ): Boolean {
-            return oldItem.animeId == newItem.animeId
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: AnimeRecentResponseItem,
-            newItem: AnimeRecentResponseItem
+            oldItem: RecentResultList,
+            newItem: RecentResultList
         ): Boolean {
             return oldItem == newItem
         }
@@ -56,21 +57,21 @@ class RecentAdapter(
     inner class RecentViewHolder(private val binding: AnimeGridItemBinding) :
         ViewHolder(binding.root) {
 
-        fun bind(anime: AnimeRecentResponseItem) {
+        fun bind(anime: RecentResultList) {
 
             //set anime info
-            binding.tvAnimeTitleGI.text = anime.animeTitle
-            binding.tvEpisodeNumber.text = anime.episodeNum
+            binding.tvAnimeTitleGI.text = anime.title
+            binding.tvEpisodeNumber.text = anime.episodeNumber.toString()
             binding.tvEpisodeNumber.visibility = View.VISIBLE
 
             //image setup
             Glide.with(context)
-                .load(anime.animeImg)
+                .load(anime.image)
                 .into(binding.imgAnimeGI)
 
             //onclick
             binding.root.setOnClickListener {
-                onAnimeClicked(anime.animeId)
+                onAnimeClicked(anime.id)
             }
         }
     }

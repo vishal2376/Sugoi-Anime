@@ -3,6 +3,7 @@
 
 ### ⚠️ Project Discontinued because of Api Migration
 
+
 # **Sugoi-Anime**
 
 Sugoi-Anime is an anime app in which you can watch anime episodes and read manga.
@@ -22,12 +23,16 @@ Sugoi-Anime is an anime app in which you can watch anime episodes and read manga
 </div>
 
 ## Features
-- Show Upcoming and Popular Animes
-- Anime Manga
-- Search Anime or manga
+- No Ads
+- Upcoming Anime Episodes
+- Watch Anime Episode (Broken due to new api changes)
+- Read Manga (Broken due to new api changes)
+- Search Anime,manga
+- Dark Theme UI
+- Cool animations for better user experience
 
-## Screenshots
-
+## Showcase Video
+https://github.com/vishal2376/Sugoi-Anime/assets/38159691/7a9506f8-17b8-49e5-8d33-595724c6360a
 
 ## Getting Started
 
